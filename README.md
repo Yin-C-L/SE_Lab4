@@ -5,6 +5,7 @@
 - 学期：2026 年秋
 - 课程：软件工程原理与实践
 - 实验页面：https://oucai.club/classes/se/lab04
+- 代码仓库：https://github.com/Yin-C-L/SE_Lab4
 - 运行环境：Google Colab (GPU, PyTorch)
 
 本仓库对应实验4的两部分代码作业：
@@ -240,7 +241,7 @@ weighted avg     0.9549    0.9536    0.9527      9225
 
 ### 3.4 SENet 的注意力是不是可以加在空间位置上？
 
-可以。SENet 只建模了通道维度的注意力，CBAM（Convolutional Block Attention Module）就在 SE 的通道注意力之后并联了一个空间注意力模块：沿通道维做 max-pooling 和 avg-pooling，得到两个 H×W 的二维图，拼接后用 7×7 卷积生成单通道空间权重图，再 Sigmoid 乘回原特征。这样同时关注“哪些通道重要”和“空间上哪些位置重要”。在高光谱、医学图像等任务上加入空间注意力通常还能再涨点。
+可以。SENet 只建模了通道维度的注意力，CBAM（Convolutional Block Attention Module）就在 SE 的通道注意力之后并联了一个空间注意力模块：沿通道维做 max-pooling 和 avg-pooling，得到两个 H×W 的二维图，拼接后用 7×7 卷积生成单通道空间权重图，再 Sigmoid 乘回原特征。这样同时关注"哪些通道重要"和"空间上哪些位置重要"。在高光谱、医学图像等任务上加入空间注意力通常还能再涨点。
 
 ### 3.5 ShuffleNet 中通道 shuffle 如何用代码实现？
 
@@ -263,5 +264,5 @@ def channel_shuffle(x, groups):
 ## 复现说明
 
 - 两个 notebook 都在 Google Colab 上运行，运行时选 GPU。
-- 数据由 HybridSN notebook 第一个 cell 自动从 GitHub 镜像下载 Indian_pines_corrected.mat / Indian_pines_gt.mat。
+- 数据由 notebook 第一个 cell 自动从 GitHub 镜像下载 Indian_pines_corrected.mat / Indian_pines_gt.mat。
 - 关键超参：CIFAR10 实验 lr=1e-3、batch=128、10 epoch；HybridSN 实验 lr=1e-3、batch=128、100 epoch、patch=25、PCA=30。
